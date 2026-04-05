@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectMockup } from "./mockups/ProjectMockup";
 
-export function ProjectCard({ p, i, t }) {
+export function ProjectCard({ p, i, t, onClickDetail }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -14,6 +14,7 @@ export function ProjectCard({ p, i, t }) {
       transition={{ duration: 0.55, delay: i * 0.12 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
+      onClick={onClickDetail} // 🔥 klik seluruh card
       className="group relative rounded-3xl overflow-hidden cursor-pointer"
       style={{
         background: t.bgCard,
@@ -133,10 +134,18 @@ export function ProjectCard({ p, i, t }) {
                 Live Project
               </span>
             </div>
+
+            {/* 🔥 BUTTON DETAIL */}
             <motion.div
+              onClick={(e) => {
+                e.stopPropagation(); // biar tidak double trigger
+                onClickDetail?.();
+              }}
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
               animate={{ x: hovered ? 4 : 0 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-2 text-[13px] font-semibold"
+              className="flex items-center gap-2 text-[13px] font-semibold cursor-pointer"
               style={{ color: p.color }}
             >
               Lihat Detail
