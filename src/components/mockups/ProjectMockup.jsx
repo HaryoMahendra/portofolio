@@ -1,42 +1,98 @@
 function MockupDashboard({ accent }) {
   const a = accent;
   return (
-    <svg viewBox="0 0 320 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-      <rect width="320" height="200" fill="#0f172a" />
-      <rect width="52" height="200" fill="#1e293b" />
-      <rect x="10" y="20" width="32" height="6" rx="3" fill={a} opacity="0.8" />
-      {[50, 68, 86, 104, 122].map((y, i) => (
-        <rect key={i} x="10" y={y} width={i === 0 ? 32 : 24} height="5" rx="2.5" fill="white" opacity={i === 0 ? 0.5 : 0.2} />
+    <svg viewBox="0 0 320 200" fill="none" className="w-full h-full">
+
+      {/* Background */}
+      <defs>
+        <linearGradient id="bgGrad" x1="0" y1="0" x2="320" y2="200">
+          <stop offset="0%" stopColor="#020617" />
+          <stop offset="100%" stopColor="#0f172a" />
+        </linearGradient>
+
+        <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="100%">
+          <stop offset="0%" stopColor="#1e293b" />
+          <stop offset="100%" stopColor="#0f172a" />
+        </linearGradient>
+      </defs>
+
+      <rect width="320" height="200" fill="url(#bgGrad)" />
+
+      {/* Sidebar */}
+      <rect width="52" height="200" fill="#020617" />
+      <circle cx="26" cy="26" r="12" fill={a} opacity="0.4" />
+      {[50, 70, 90, 110, 130].map((y, i) => (
+        <rect key={i} x="14" y={y} width="24" height="5" rx="3" fill="white" opacity="0.15" />
       ))}
-      <rect x="52" y="0" width="268" height="28" fill="#1e293b" />
-      <rect x="64" y="10" width="60" height="8" rx="4" fill="white" opacity="0.1" />
-      <circle cx="288" cy="14" r="7" fill={a} opacity="0.7" />
-      <circle cx="270" cy="14" r="5" fill="white" opacity="0.15" />
+
+      {/* Topbar */}
+      <rect x="52" y="0" width="268" height="30" fill="#020617" />
+      <rect x="70" y="11" width="60" height="8" rx="4" fill="white" opacity="0.1" />
+      <circle cx="290" cy="15" r="6" fill={a} />
+
+      {/* Cards */}
       {[0, 1, 2].map((i) => (
         <g key={i}>
-          <rect x={64 + i * 82} y="36" width="76" height="44" rx="8" fill="#1e293b" stroke={a} strokeOpacity={i === 0 ? 0.5 : 0.15} strokeWidth="1" />
-          <rect x={72 + i * 82} y="45" width="30" height="4" rx="2" fill="white" opacity="0.3" />
-          <rect x={72 + i * 82} y="55" width={40 + i * 5} height="7" rx="3" fill={a} opacity={0.6 + i * 0.1} />
-          <rect x={72 + i * 82} y="66" width="20" height="3" rx="1.5" fill="#10B981" opacity="0.6" />
+          <rect
+            x={64 + i * 82}
+            y="40"
+            width="76"
+            height="44"
+            rx="10"
+            fill="url(#cardGrad)"
+            stroke={a}
+            strokeOpacity={0.2}
+          />
+          <rect x={72 + i * 82} y="50" width="30" height="4" rx="2" fill="white" opacity="0.3" />
+          <rect x={72 + i * 82} y="60" width={40 + i * 5} height="8" rx="4" fill={a} opacity="0.7" />
         </g>
       ))}
-      <rect x="64" y="88" width="168" height="96" rx="10" fill="#1e293b" />
-      <rect x="72" y="96" width="60" height="5" rx="2.5" fill="white" opacity="0.3" />
+
+      {/* Chart Box */}
+      <rect x="64" y="92" width="168" height="88" rx="12" fill="url(#cardGrad)" />
+
+      {/* Bars */}
       {[30, 45, 25, 55, 40, 50, 35].map((h, i) => (
-        <rect key={i} x={78 + i * 20} y={160 - h} width="12" height={h} rx="3" fill={a} opacity={0.3 + i * 0.08} />
+        <rect
+          key={i}
+          x={78 + i * 20}
+          y={160 - h}
+          width="12"
+          height={h}
+          rx="4"
+          fill={a}
+          opacity={0.4 + i * 0.07}
+        />
       ))}
-      <polyline points="78,140 98,125 118,145 138,115 158,130 178,112 198,120" stroke={a} strokeWidth="2" fill="none" opacity="0.8" />
+
+      {/* Line */}
+      <polyline
+        points="78,140 98,125 118,145 138,115 158,130 178,112 198,120"
+        stroke={a}
+        strokeWidth="2"
+        fill="none"
+      />
+
+      {/* Dots */}
       {[78, 98, 118, 138, 158, 178, 198].map((x, i) => {
         const ys = [140, 125, 145, 115, 130, 112, 120];
         return <circle key={i} cx={x} cy={ys[i]} r="3" fill={a} />;
       })}
-      <rect x="240" y="88" width="80" height="96" rx="10" fill="#1e293b" />
-      <rect x="248" y="97" width="40" height="4" rx="2" fill="white" opacity="0.3" />
+
+      {/* Right Panel */}
+      <rect x="240" y="92" width="70" height="88" rx="12" fill="url(#cardGrad)" />
+
       {[0, 1, 2, 3].map((i) => (
-        <g key={i}>
-          <rect x="248" y={110 + i * 18} width={16 + i * 8} height="7" rx="3" fill={a} opacity={0.3 + i * 0.1} />
-          <rect x={270 + i * 5} y={110 + i * 18} width={30 - i * 5} height="7" rx="3" fill="white" opacity="0.08" />
-        </g>
+        <rect
+          key={i}
+          x="250"
+          y={105 + i * 18}
+          width={20 + i * 10}
+          height="6"
+          rx="3"
+          fill={a}
+          opacity={0.3 + i * 0.1}
+        />
       ))}
     </svg>
   );
