@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import { SiteIcon } from "../components/SiteIcon";
 
 export function HeroSection({ t, scrollTo }) {
   return (
@@ -90,7 +89,7 @@ export function HeroSection({ t, scrollTo }) {
             style={{ background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)" }}
           />
           <div
-            className="relative z-10 w-64 h-64 rounded-3xl flex flex-col items-center justify-center gap-4"
+            className="relative z-10 w-72 h-80 rounded-3xl flex flex-col items-center justify-center gap-4"
             style={{
               background: t.bgCard,
               border: `1px solid ${t.border}`,
@@ -98,7 +97,12 @@ export function HeroSection({ t, scrollTo }) {
               boxShadow: t.text === "#f0f0ee" ? "0 8px 40px rgba(0,0,0,0.4)" : "0 8px 40px rgba(0,0,0,0.08)",
             }}
           >
-            <SiteIcon size={80} rounded="rounded-2xl" />
+            <img
+  src="/assets/profile2.jpeg"
+  alt="Haryo Mahendra"
+  className="w-40 h-40 rounded-2xl object-cover object-top"
+  style={{ border: `2px solid ${t.border}` }}
+/>
             <div className="text-center">
               <p className="text-[15px] font-bold tracking-tight" style={{ color: t.text }}>Haryo Mahendra</p>
               <p className="text-[11px] mt-0.5 tracking-wide" style={{ color: t.textMuted }}>Frontend Dev & UI/UX</p>

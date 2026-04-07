@@ -6,7 +6,7 @@ const SOCIAL_LINKS = [
   { name: "Email",    label: "Email",    value: "haryomahendra41@gmail.com",  href: "mailto:haryomahendra41@gmail.com",                               accent: "#EF4444" },
   { name: "LinkedIn", label: "LinkedIn", value: "LinkedIn/haryomahendra",     href: "https://www.linkedin.com/in/haryomahendra/",                    accent: "#0A66C2" },
   { name: "Figma",    label: "Figma",    value: "haryomahendra/projects",     href: "https://www.figma.com/files/team/1263742957969981377/all-projects/", accent: "#A259FF" },
-  { name: "GitHub",   label: "GitHub",   value: "HaryoMahendra",              href: "https://github.com/HaryoMahendra",                              accent: null }, // accent resolved at render
+  { name: "GitHub",   label: "GitHub",   value: "GitHub/HaryoMahendra",              href: "https://github.com/HaryoMahendra",                              accent: null }, // accent resolved at render
 ];
 
 const TOPIC_CHIPS = ["UI/UX Design", "Frontend Dev", "Freelance", "Full-time", "Kolaborasi", "Lainnya"];
