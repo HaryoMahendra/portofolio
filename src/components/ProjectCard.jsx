@@ -14,7 +14,7 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
       transition={{ duration: 0.55, delay: i * 0.12 }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      onClick={onClickDetail} // 🔥 klik seluruh card
+      onClick={onClickDetail}
       className="group relative rounded-3xl overflow-hidden cursor-pointer"
       style={{
         background: t.bgCard,
@@ -25,7 +25,6 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
         transition: "all 0.4s cubic-bezier(0.22,1,0.36,1)",
       }}
     >
-      {/* Hover glow */}
       <motion.div
         animate={{ opacity: hovered ? 1 : 0 }}
         transition={{ duration: 0.4 }}
@@ -38,9 +37,9 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
       <div className="flex flex-col lg:flex-row">
         {/* Mockup preview */}
         <div
-          className="relative lg:w-[380px] shrink-0 overflow-hidden"
-          style={{ minHeight: 200 }}
-        >
+  className="relative lg:w-[380px] shrink-0 overflow-hidden p-4"
+  style={{ minHeight: 200 }}
+>
           <div
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
@@ -67,14 +66,25 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
           >
             {p.year}
           </div>
+
           <motion.div
             animate={{ scale: hovered ? 1.03 : 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="w-full h-full"
             style={{ minHeight: 200 }}
           >
-            <ProjectMockup type={p.mockupType} accent={p.mockupAccent} />
+            {p.image ? (
+              <img
+  src={`/assets/proyek/${p.image}`}
+  alt={p.title}
+  className="w-full h-full object-cover rounded-xl"
+  style={{ minHeight: 200 }}
+/>
+            ) : (
+              <ProjectMockup type={p.mockupType} accent={p.mockupAccent} />
+            )}
           </motion.div>
+
           <div
             className="absolute bottom-0 left-0 right-0 h-16 pointer-events-none z-10"
             style={{
@@ -105,8 +115,8 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
               </span>
             </div>
             <p className="text-[14px] leading-relaxed mb-5" style={{ color: t.textSub }}>
-              {p.desc}
-            </p>
+  {p.descShort || p.desc}
+</p>
             <div className="flex flex-wrap gap-2 mb-6">
               {p.tech.map((tech, ti) => (
                 <span
@@ -135,10 +145,9 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
               </span>
             </div>
 
-            {/* 🔥 BUTTON DETAIL */}
             <motion.div
               onClick={(e) => {
-                e.stopPropagation(); // biar tidak double trigger
+                e.stopPropagation();
                 onClickDetail?.();
               }}
               whileTap={{ scale: 0.95 }}
