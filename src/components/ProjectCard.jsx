@@ -47,16 +47,6 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
             }}
           />
           <div
-            className="absolute top-4 left-4 z-20 w-9 h-9 rounded-full flex items-center justify-center text-[12px] font-bold"
-            style={{
-              background: `${p.color}22`,
-              border: `1px solid ${p.color}40`,
-              color: p.color,
-            }}
-          >
-            {p.num}
-          </div>
-          <div
             className="absolute top-4 right-4 z-20 text-[11px] font-mono font-medium px-2.5 py-1 rounded-full"
             style={{
               background: "rgba(0,0,0,0.4)",

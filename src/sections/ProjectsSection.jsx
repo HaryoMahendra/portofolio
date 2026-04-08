@@ -50,26 +50,28 @@ export function ProjectsSection({ t }) {
       </div>
 
       <div className="flex flex-col gap-5">
-        {PROJECTS.map((p, i) => (
-          <ProjectCard
-            key={i}
-            p={p}
-            i={i}
-            t={t}
-            onClickDetail={() => setSelectedProject(p)}
-          />
-        ))}
+        {PROJECTS.filter((p) => p.featured)
+          .slice(0, 2)
+          .map((p, i) => (
+            <ProjectCard
+              key={i}
+              p={p}
+              i={i}
+              t={t}
+              onClickDetail={() => setSelectedProject(p)}
+            />
+          ))}
       </div>
 
       {/* MODAL DETAIL PROJECT */}
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]"
           onClick={() => setSelectedProject(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-[90%] max-w-3xl relative animate-[fadeIn_.3s_ease]"
+            className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-[90%] max-w-3xl relative scale-95 animate-[fadeIn_.3s_ease,zoomIn_.3s_ease_forwards]"
           >
             <button
               onClick={() => setSelectedProject(null)}
@@ -80,14 +82,36 @@ export function ProjectsSection({ t }) {
 
             <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
 
-            <img
+            {/* <img
               src={`/assets/proyek/${selectedProject.image}`}
               className="rounded-xl mb-4 w-full object-cover max-h-[400px]"
-            />
+            /> */}
 
-            <p className="text-gray-400 mb-4">{selectedProject.desc}</p>
+            <div className="relative mb-6">
+              <img
+                src={`/assets/proyek/${selectedProject.detailImage || selectedProject.image}`}
+                className="w-full h-[260px] md:h-[340px] object-cover rounded-2xl"
+              />
 
-            <div className="flex flex-wrap gap-2 mb-4">
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+              {/* Title di atas gambar */}
+              <div className="absolute bottom-4 left-5">
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  {selectedProject.title}
+                </h2>
+                <p className="text-xs text-gray-300 mt-1">
+                  {selectedProject.tag}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-gray-400 mb-5 leading-relaxed">
+              {selectedProject.desc}
+            </p>
+
+            <div className="flex flex-wrap gap-2 mb-6">
               {selectedProject.tech?.map((tech, i) => (
                 <span
                   key={i}
@@ -103,9 +127,9 @@ export function ProjectsSection({ t }) {
                 href={selectedProject.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition"
+                className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl transition"
               >
-                Lihat Demo
+                🚀 Lihat Demo
               </a>
             )}
           </div>

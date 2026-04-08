@@ -36,7 +36,7 @@ export function HeroSection({ t, scrollTo }) {
             style={{ background: "linear-gradient(90deg,#3B82F6,#8B5CF6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
           >
             <Typewriter
-              words={["UI/UX Designer", "Frontend Developer", "Testing System", "Digital Marketing"]}
+              words={["UI/UX Designer", "Frontend Developer", "Testing System", "Business Process Analyst"]}
               loop
               cursor
               cursorStyle="|"
