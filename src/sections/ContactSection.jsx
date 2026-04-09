@@ -13,7 +13,7 @@ const TOPIC_CHIPS = ["UI/UX Design", "Frontend Dev", "Freelance", "Full-time", "
 
 const STATS = [
   { val: "< 24h", label: "Respons" },
-  { val: "10+",   label: "Proyek"  },
+  { val: "5+",   label: "Proyek"  },
   { val: "100%",  label: "Fokus"   },
 ];
 

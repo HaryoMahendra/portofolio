@@ -19,16 +19,18 @@ export function AboutSection({ t }) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-16 items-center">
-
         {/* ================= KIRI (PROFILE + SKILLS) ================= */}
         <div data-aos="fade-right" className="relative">
-
           {/* 🔥 Background Glow */}
-          <div className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-30"
-            style={{ background: "linear-gradient(135deg,#3B82F6,#8B5CF6)" }} />
+          <div
+            className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-30"
+            style={{ background: "linear-gradient(135deg,#3B82F6,#8B5CF6)" }}
+          />
 
-          <div className="absolute bottom-0 right-0 w-60 h-60 rounded-full blur-2xl opacity-20"
-            style={{ background: "linear-gradient(135deg,#06B6D4,#3B82F6)" }} />
+          <div
+            className="absolute bottom-0 right-0 w-60 h-60 rounded-full blur-2xl opacity-20"
+            style={{ background: "linear-gradient(135deg,#06B6D4,#3B82F6)" }}
+          />
 
           {/* 🔥 Grid Pattern */}
           <div
@@ -41,7 +43,7 @@ export function AboutSection({ t }) {
           />
 
           {/* Avatar */}
-          <div className="flex justify-center md:justify-start mb-10 relative z-10">
+          <div className="flex justify-center mb-10 relative z-10">
             <div
               className="relative w-52 h-52 p-3 rounded-3xl backdrop-blur-xl"
               style={{
@@ -84,10 +86,16 @@ export function AboutSection({ t }) {
                   style={{ border: `2px solid ${t.border}` }}
                 />
 
-                <p className="text-[13px] font-bold mt-1" style={{ color: t.text }}>
+                <p
+                  className="text-[13px] font-bold mt-1"
+                  style={{ color: t.text }}
+                >
                   Haryo Mahendra
                 </p>
-                <p className="text-[11px] tracking-wide" style={{ color: t.textMuted }}>
+                <p
+                  className="text-[11px] tracking-wide"
+                  style={{ color: t.textMuted }}
+                >
                   UI Engineer
                 </p>
               </div>
@@ -189,15 +197,26 @@ export function AboutSection({ t }) {
             </span>
           </h2>
 
-          <p className="text-[15px] leading-loose mb-4" style={{ color: t.textSub }}>
-            Saya adalah Frontend Developer & UI/UX Designer dengan pengalaman 1+
-            tahun membantu startup dan perusahaan membangun produk digital yang
-            tidak hanya indah secara visual, tapi juga berkinerja tinggi.
+          <p
+            className="text-[15px] leading-loose mb-4"
+            style={{ color: t.textSub }}
+          >
+            Lulusan Sistem Informasi Bisnis Politeknik Negeri Malang dengan
+            fokus di bidang desain, pengembangan, dan testing aplikasi.
+            Pengalaman magang di PT INKA (Persero) mengasah kemampuan saya dalam
+            menganalisis kebutuhan pengguna, memperbaiki sistem informasi nyata,
+            dan merancang antarmuka yang fungsional sekaligus intuitif.
           </p>
 
-          <p className="text-[14px] leading-loose" style={{ color: t.textMuted }}>
-            Latar belakang saya di desain & development memberikan perspektif unik
-            — saya bisa menjembatani kebutuhan bisnis dengan solusi teknis yang elegan.
+          <p
+            className="text-[14px] leading-loose"
+            style={{ color: t.textMuted }}
+          >
+            Latar belakang Sistem Informasi Bisnis memberi saya perspektif unik
+            — mampu menjembatani kebutuhan bisnis dengan solusi teknis yang
+            tepat sasaran, mulai dari desain UI/UX di Figma, implementasi
+            frontend dengan Laravel, hingga pengujian sistem menggunakan Cypress
+            dan analisis data dengan Power BI.
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
@@ -219,7 +238,10 @@ export function AboutSection({ t }) {
 
                 <div className="pl-2">
                   <div className="flex justify-between items-start mb-1">
-                    <p className="text-[14px] font-bold" style={{ color: t.text }}>
+                    <p
+                      className="text-[14px] font-bold"
+                      style={{ color: t.text }}
+                    >
                       {exp.role}
                     </p>
 
@@ -249,7 +271,6 @@ export function AboutSection({ t }) {
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
