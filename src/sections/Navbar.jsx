@@ -13,6 +13,7 @@ export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
         background: t.navBg,
         backdropFilter: "blur(20px)",
         borderBottom: `1px solid ${t.border}`,
+        boxShadow: "0 8px 30px rgba(59,130,246,0.06), 0 1px 0 rgba(139,92,246,0.08)",
       }}
     >
       <div className="mx-auto px-6 md:px-14 py-3.5 flex justify-between items-center max-w-6xl">
@@ -108,17 +109,6 @@ export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
               </AnimatePresence>
             </motion.div>
           </button>
-
-          {/* <button
-            onClick={() => scrollTo("contact")}
-            className="hidden md:inline-flex items-center gap-2 text-[13px] font-semibold px-5 py-2 rounded-full text-white transition-all duration-300 hover:scale-105"
-            style={{
-              background: "linear-gradient(135deg,#3B82F6,#8B5CF6)",
-              boxShadow: "0 0 20px rgba(59,130,246,0.3)",
-            }}
-          >
-            Hire Me ✦
-          </button> */}
         </motion.div>
       </div>
     </nav>

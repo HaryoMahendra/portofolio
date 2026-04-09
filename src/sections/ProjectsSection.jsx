@@ -36,11 +36,14 @@ export function ProjectsSection({ t }) {
         data-aos="fade-up"
       >
         <h2
-          className="text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight"
-          style={{ color: t.text }}
-        >
-          Projects yang Dikerjakan
-        </h2>
+  className="text-[clamp(2rem,4vw,3rem)] font-bold leading-tight tracking-tight"
+  style={{ color: t.text }}
+>
+  Projects yang{" "}
+  <span style={{ background: "linear-gradient(90deg,#3B82F6,#8B5CF6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+    Dikerjakan
+  </span>
+</h2>
         <p
           className="text-[13px] max-w-xs text-right"
           style={{ color: t.textMuted }}

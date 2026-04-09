@@ -147,7 +147,7 @@ export function HeroSection({ t, scrollTo }) {
                 className="text-[15px] font-bold tracking-tight"
                 style={{ color: t.text }}
               >
-                Haryo Mahendra
+                Haryo Mahendra Jati
               </p>
               <p
                 className="text-[11px] mt-0.5 tracking-wide"

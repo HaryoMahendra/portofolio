@@ -80,23 +80,23 @@ export function AboutSection({ t }) {
                 />
 
                 <img
-                  src="/assets/profile1.jpeg"
+                  src="/assets/profile3.jpeg"
                   alt="Haryo Mahendra"
-                  className="w-28 h-28 rounded-2xl object-cover object-top shadow-lg relative z-10"
+                  className="w-35 h-35 rounded-2xl object-cover object-top shadow-lg relative z-10"
                   style={{ border: `2px solid ${t.border}` }}
                 />
-
+                
                 <p
                   className="text-[13px] font-bold mt-1"
                   style={{ color: t.text }}
                 >
-                  Haryo Mahendra
+                  Haryo Mahendra Jati
                 </p>
                 <p
                   className="text-[11px] tracking-wide"
                   style={{ color: t.textMuted }}
                 >
-                  UI Engineer
+                  Frontend Dev & UI/UX
                 </p>
               </div>
 
@@ -212,11 +212,10 @@ export function AboutSection({ t }) {
             className="text-[14px] leading-loose"
             style={{ color: t.textMuted }}
           >
-            Latar belakang Sistem Informasi Bisnis memberi saya perspektif unik
-            — mampu menjembatani kebutuhan bisnis dengan solusi teknis yang
-            tepat sasaran, mulai dari desain UI/UX di Figma, implementasi
-            frontend dengan Laravel, hingga pengujian sistem menggunakan Cypress
-            dan analisis data dengan Power BI.
+            Latar belakang saya memberikan perspektif unik serta mampu
+            menjembatani kebutuhan bisnis dengan solusi teknis yang tepat
+            sasaran, mulai dari desain UI/UX, implementasi, hingga pengujian
+            sistem dan analisis data.
           </p>
 
           <div className="mt-8 flex flex-col gap-3">
