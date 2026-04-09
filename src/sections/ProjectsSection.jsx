@@ -45,7 +45,7 @@ export function ProjectsSection({ t }) {
           className="text-[13px] max-w-xs text-right"
           style={{ color: t.textMuted }}
         >
-          Karya pilihan dari project yang telah selesai.
+          Project pilihan yang sudah diselesaikan.
         </p>
       </div>
 
@@ -71,7 +71,7 @@ export function ProjectsSection({ t }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-[90%] max-w-3xl relative scale-95 animate-[fadeIn_.3s_ease,zoomIn_.3s_ease_forwards]"
+            className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-[90%] max-w-3xl relative scale-95 animate-[fadeIn_.3s_ease,zoomIn_.3s_ease_forwards] overflow-y-auto max-h-[90vh]"
           >
             <button
               onClick={() => setSelectedProject(null)}
@@ -122,15 +122,43 @@ export function ProjectsSection({ t }) {
               ))}
             </div>
 
-            {selectedProject.link !== "#" && (
+            {/* Live Project Badge */}
+            {selectedProject.link && selectedProject.link !== "#" ? (
               <a
                 href={selectedProject.link}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-600 text-white px-5 py-2.5 rounded-xl transition"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full transition hover:opacity-80"
+                style={{
+                  background: (selectedProject.color || "#3b82f6") + "18",
+                  border: "1px solid " + (selectedProject.color || "#3b82f6") + "40",
+                }}
               >
-                🚀 Lihat Demo
+                <div
+                  className="w-2 h-2 rounded-full animate-pulse"
+                  style={{ background: selectedProject.color || "#3b82f6" }}
+                />
+                <span
+                  className="text-[13px] font-semibold"
+                  style={{ color: selectedProject.color || "#3b82f6" }}
+                >
+                  Live Project
+                </span>
               </a>
+            ) : (
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                style={{
+                  background: "rgba(255,255,255,0.05)",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                }}
+              >
+                <div className="w-2 h-2 rounded-full bg-gray-500" />
+                <span className="text-[13px] font-medium text-gray-500">
+                  Coming Soon
+                </span>
+              </div>
             )}
           </div>
         </div>
@@ -153,13 +181,13 @@ export function ProjectsSection({ t }) {
               ✕
             </button>
 
-            <AllProjectsPage
-              t={t}
-              onSelectProject={(p) => {
-                setShowAllProjects(false);
-                setSelectedProject(p);
-              }}
-            />
+           <AllProjectsPage
+  t={t}
+  onSelectProject={(p) => {
+    setShowAllProjects(false);
+    setTimeout(() => setSelectedProject(p), 50); // ← tambah delay kecil
+  }}
+/>
           </div>
         </div>
       )}

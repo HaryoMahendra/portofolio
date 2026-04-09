@@ -126,14 +126,10 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
 
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div
-                className="w-1.5 h-1.5 rounded-full animate-pulse"
-                style={{ background: p.color }}
-              />
-              <span className="text-[12px] font-medium" style={{ color: t.textMuted }}>
-                Live Project
-              </span>
-            </div>
+  <span className="text-[12px] font-medium" style={{ color: t.textMuted }}>
+    {p.tech.length} teknologi digunakan
+  </span>
+</div>
 
             <motion.div
               onClick={(e) => {
