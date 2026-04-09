@@ -109,7 +109,7 @@ export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
             </motion.div>
           </button>
 
-          <button
+          {/* <button
             onClick={() => scrollTo("contact")}
             className="hidden md:inline-flex items-center gap-2 text-[13px] font-semibold px-5 py-2 rounded-full text-white transition-all duration-300 hover:scale-105"
             style={{
@@ -118,7 +118,7 @@ export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
             }}
           >
             Hire Me ✦
-          </button>
+          </button> */}
         </motion.div>
       </div>
     </nav>

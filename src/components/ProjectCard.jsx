@@ -127,7 +127,7 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
   <span className="text-[12px] font-medium" style={{ color: t.textMuted }}>
-    {p.tech.length} teknologi digunakan
+    {p.tech.length} framework digunakan
   </span>
 </div>
 
