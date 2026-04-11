@@ -82,7 +82,7 @@ export function HeroSection({ t, scrollTo }) {
               Lihat Portfolio →
             </button>
             <a
-              href="/public/assets/document/CV_HaryoMJ.pdf"
+              href="/assets/document/CV_HaryoMJ.pdf"
               download
               className="flex items-center gap-2 px-6 py-3 rounded-full text-[14px] font-medium transition-all duration-300 hover:scale-105"
               style={{

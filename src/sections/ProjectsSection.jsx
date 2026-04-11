@@ -179,7 +179,7 @@ export function ProjectsSection({ t }) {
           >
             <button
               onClick={() => setShowAllProjects(false)}
-              className="sticky top-4 float-right mr-4 z-10 text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center transition"
+              className="sticky top-10 float-right mr-4 z-10 text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center transition"
             >
               ✕
             </button>

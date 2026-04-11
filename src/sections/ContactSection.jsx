@@ -17,7 +17,7 @@ const STATS = [
 
 export function ContactSection({ t, dark }) {
   return (
-    <section id="contact" className="relative z-10 py-28 px-6 md:px-14 max-w-6xl mx-auto">
+    <section id="contact" className="relative py-28 px-6 md:px-14 max-w-6xl mx-auto">
 
       {/* Header */}
       <div className="flex items-center gap-3 mb-6" data-aos="fade-up">
