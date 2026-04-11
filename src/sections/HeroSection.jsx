@@ -182,31 +182,6 @@ export function HeroSection({ t, scrollTo }) {
               ))}
             </div>
           </div>
-
-          <motion.div
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute top-0 right-0 text-[11px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm"
-            style={{
-              background: "rgba(59,130,246,0.12)",
-              border: "1px solid rgba(59,130,246,0.25)",
-              color: "#93C5FD",
-            }}
-          >
-            React · Next.js
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 6, 0] }}
-            transition={{ duration: 3.5, repeat: Infinity }}
-            className="absolute bottom-2 left-0 text-[11px] font-medium px-3 py-1.5 rounded-full backdrop-blur-sm"
-            style={{
-              background: "rgba(139,92,246,0.12)",
-              border: "1px solid rgba(139,92,246,0.25)",
-              color: "#C4B5FD",
-            }}
-          >
-            Figma · UI/UX
-          </motion.div>
         </motion.div>
       </div>
     </section>
