@@ -155,7 +155,7 @@ export function HeroSection({ t, scrollTo }) {
                 className="text-[11px] mt-0.5 tracking-wide"
                 style={{ color: t.textMuted }}
               >
-                Frontend Dev & UI/UX
+                IT Support | System Analyst
               </p>
             </div>
             <div

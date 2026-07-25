@@ -84,7 +84,7 @@ export function AboutSection({ t }) {
                   className="w-35 h-35 rounded-2xl object-cover object-top shadow-lg relative z-10"
                   style={{ border: `2px solid ${t.border}` }}
                 />
-                
+
                 <p
                   className="text-[13px] font-bold mt-1"
                   style={{ color: t.text }}
@@ -184,7 +184,7 @@ export function AboutSection({ t }) {
             className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold leading-tight tracking-tight mb-5"
             style={{ color: t.text }}
           >
-            Saya membuat produk{" "}
+            Mengubah kebutuhan bisnis{" "}
             <span
               style={{
                 background: "linear-gradient(90deg,#3B82F6,#8B5CF6)",
@@ -192,7 +192,7 @@ export function AboutSection({ t }) {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              digital yang nyata.
+              menjadi solusi digital.
             </span>
           </h2>
 
@@ -200,14 +200,16 @@ export function AboutSection({ t }) {
             className="text-[15px] leading-loose mb-4"
             style={{ color: t.textSub }}
           >
-            Lulusan Sistem Informasi Bisnis Politeknik Negeri Malang dengan
-            fokus di bidang desain, pengembangan, dan testing aplikasi.
-            Pengalaman magang di PT INKA (Persero) mengasah kemampuan saya dalam
-            menganalisis kebutuhan pengguna, memperbaiki sistem informasi nyata,
-            dan merancang antarmuka yang fungsional sekaligus intuitif.
+            Lulusan D4 Sistem Informasi Bisnis Politeknik Negeri Malang yang
+            saat ini bekerja sebagai Staff IT di Rumah Sakit Assalam Cibinong.
+            Memiliki pengalaman magang di PT INKA (Persero) pada bidang analisis
+            sistem, proses bisnis, dan pengujian sistem. Berfokus di bidang IT
+            Support, pengelolaan sistem informasi, troubleshooting hardware dan
+            jaringan, serta pengembangan solusi digital yang berorientasi pada
+            kebutuhan pengguna.
           </p>
 
-          <p
+          {/* <p
             className="text-[14px] leading-loose"
             style={{ color: t.textMuted }}
           >
@@ -215,7 +217,7 @@ export function AboutSection({ t }) {
             menjembatani kebutuhan bisnis dengan solusi teknis yang tepat
             sasaran, mulai dari desain UI/UX, implementasi, hingga pengujian
             sistem dan analisis data.
-          </p>
+          </p> */}
 
           <div className="mt-8 flex flex-col gap-3">
             {EXPERIENCES.map((exp, i) => (
