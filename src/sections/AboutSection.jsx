@@ -19,7 +19,6 @@ export function AboutSection({ t }) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-16 items-center">
-        {/* ================= KIRI (PROFILE + SKILLS) ================= */}
         <div data-aos="fade-right" className="relative">
           {/* 🔥 Background Glow */}
           <div

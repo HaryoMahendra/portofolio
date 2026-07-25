@@ -19,7 +19,7 @@ export function HeroSection({ t, scrollTo }) {
       >
         <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
         <span className="text-[12px] font-medium text-blue-400 tracking-wide">
-          Open to Work · Freelance & Full-time
+          Open to Work
         </span>
       </motion.div>
 
@@ -51,10 +51,11 @@ export function HeroSection({ t, scrollTo }) {
           >
             <Typewriter
               words={[
-                "UI/UX Designer",
-                "Frontend Developer",
-                "Testing System",
+                "IT Support",
+                "System Analyst",
                 "Business Process Analyst",
+                "Frontend Developer",
+                "Software Tester",
               ]}
               loop
               cursor
@@ -65,9 +66,10 @@ export function HeroSection({ t, scrollTo }) {
             className="text-[15px] leading-relaxed max-w-md mb-10"
             style={{ color: t.textSub }}
           >
-            Fresh graduate Sistem Informasi Bisnis yang membangun produk digital
-            dari desain Figma hingga implementasi — didukung pengalaman magang
-            dan proyek nyata.
+            Mengubah kebutuhan bisnis menjadi solusi digital melalui keahlian di
+            bidang IT Support, analisis sistem, desain web, monitoring dan
+            evaluasi sistem informasi, serta pengujian sistem dengan fokus pada
+            solusi yang andal, efisien, dan berorientasi pada pengguna.
           </p>
 
           <div className="flex flex-wrap gap-3 mb-10">
