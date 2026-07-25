@@ -1,6 +1,13 @@
 export const EXPERIENCES = [
   {
-    role: "Intern – Pengelolaan Kualitas Proses Bisnis",
+    role: "Staff IT ",
+    company: "Rumah Sakit Assalam Cibinong, Kab Bogor",
+    period: "Jun 2026 – Sekarang",
+    desc: "Mengelola aplikasi SIMRS KHanza, memberikan dukungan teknis, serta menangani troubleshooting hardware, software, dan jaringan untuk mendukung kelancaran operasional pelayanan rumah sakit.",
+    color: "#00fef6",
+  },
+  {
+    role: "Magang Industri",
     company: "PT INKA (Persero) Madiun",
     period: "Jul 2024 – Des 2024",
     desc: "Monitoring website SIMTL, pengembangan dashboard dengan Laravel, analisis kebutuhan pengguna via Google Form, serta pengujian sistem E-Kios dan Smart Factory 4.0.",
