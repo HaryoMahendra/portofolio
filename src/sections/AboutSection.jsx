@@ -1,14 +1,18 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, FileImage } from "lucide-react";
 import { SKILLS } from "../data/skills";
 import { EXPERIENCES } from "../data/experiences";
 
 export function AboutSection({ t }) {
+  const [selectedExp, setSelectedExp] = useState(null);
+
   return (
     <section
       id="about"
-      className="relative z-10 py-28 px-6 md:px-14 max-w-6xl mx-auto"
+      className="relative z-10 py-20 px-6 md:px-14 max-w-6xl mx-auto"
     >
-      <div className="flex items-center gap-3 mb-12" data-aos="fade-up">
+      <div className="flex items-center gap-3 mb-10" data-aos="fade-up">
         <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-400">
           About Me
         </span>
@@ -18,20 +22,20 @@ export function AboutSection({ t }) {
         />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-16 items-center">
+      <div className="grid md:grid-cols-2 gap-16 items-start">
+        {/* ================= KIRI (AVATAR + SKILLS + PENDIDIKAN) ================= */}
         <div data-aos="fade-right" className="relative">
-          {/* 🔥 Background Glow */}
+          {/* Background Glow */}
           <div
-            className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-30"
+            className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-30 pointer-events-none"
             style={{ background: "linear-gradient(135deg,#3B82F6,#8B5CF6)" }}
           />
-
           <div
-            className="absolute bottom-0 right-0 w-60 h-60 rounded-full blur-2xl opacity-20"
+            className="absolute bottom-0 right-0 w-60 h-60 rounded-full blur-2xl opacity-20 pointer-events-none"
             style={{ background: "linear-gradient(135deg,#06B6D4,#3B82F6)" }}
           />
 
-          {/* 🔥 Grid Pattern */}
+          {/* Grid Pattern */}
           <div
             className="absolute inset-0 opacity-[0.05] pointer-events-none"
             style={{
@@ -70,7 +74,6 @@ export function AboutSection({ t }) {
                 className="absolute inset-[3px] rounded-3xl flex flex-col items-center justify-center gap-2"
                 style={{ background: t.bgSurface }}
               >
-                {/* 🔥 Glow belakang foto */}
                 <div
                   className="absolute w-24 h-24 rounded-2xl blur-xl opacity-40"
                   style={{
@@ -95,41 +98,14 @@ export function AboutSection({ t }) {
                   className="text-[11px] tracking-wide"
                   style={{ color: t.textMuted }}
                 >
-                  Frontend Dev & UI/UX
+                  IT Support | System Analyst
                 </p>
               </div>
-
-              {/* floating badge */}
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-6 text-[10px] font-medium px-2.5 py-1 rounded-full"
-                style={{
-                  background: "rgba(59,130,246,0.12)",
-                  border: "1px solid rgba(59,130,246,0.25)",
-                  color: "#93C5FD",
-                }}
-              >
-                React · Next.js
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity }}
-                className="absolute -bottom-4 -left-6 text-[10px] font-medium px-2.5 py-1 rounded-full"
-                style={{
-                  background: "rgba(139,92,246,0.12)",
-                  border: "1px solid rgba(139,92,246,0.25)",
-                  color: "#C4B5FD",
-                }}
-              >
-                Figma · UI/UX
-              </motion.div>
             </div>
           </div>
 
           {/* Skills */}
-          <div className="flex flex-col gap-4 relative z-10">
+          <div className="flex flex-col gap-4 relative z-10 mb-8">
             <p
               className="text-[11px] uppercase tracking-[0.2em] mb-1 font-semibold"
               style={{ color: t.textMuted }}
@@ -176,6 +152,60 @@ export function AboutSection({ t }) {
               </div>
             ))}
           </div>
+
+          {/* Pendidikan - mengisi ruang kosong supaya sejajar dengan Experience */}
+          <div className="relative z-10">
+            <p
+              className="text-[11px] uppercase tracking-[0.2em] mb-3 font-semibold"
+              style={{ color: t.textMuted }}
+            >
+              Pendidikan
+            </p>
+
+            <div
+              className="p-5 rounded-2xl relative overflow-hidden"
+              style={{
+                background: t.bgCard,
+                border: `1px solid ${t.border}`,
+              }}
+            >
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
+                style={{
+                  background: "linear-gradient(180deg,#8B5CF6,transparent)",
+                }}
+              />
+
+              <div className="pl-2">
+                <div className="flex justify-between items-start mb-1">
+                  <p className="text-[14px] font-bold" style={{ color: t.text }}>
+                    D4 Sistem Informasi Bisnis
+                  </p>
+                  <span
+                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-purple-400 shrink-0 ml-2"
+                    style={{
+                      background: "rgba(139,92,246,0.1)",
+                      border: "1px solid rgba(139,92,246,0.2)",
+                    }}
+                  >
+                    GPA 3.60
+                  </span>
+                </div>
+
+                <p className="text-[12px] font-semibold text-purple-400 mb-1.5">
+                  Politeknik Negeri Malang
+                </p>
+
+                <p
+                  className="text-[13px] leading-relaxed"
+                  style={{ color: t.textMuted }}
+                >
+                  Fokus pada analisis sistem informasi bisnis, pengembangan
+                  aplikasi, dan manajemen proyek digital.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* ================= KANAN (TEXT + EXPERIENCE) ================= */}
@@ -209,21 +239,19 @@ export function AboutSection({ t }) {
             kebutuhan pengguna.
           </p>
 
-          {/* <p
-            className="text-[14px] leading-loose"
+          <p
+            className="text-[12px] italic mb-6"
             style={{ color: t.textMuted }}
           >
-            Latar belakang saya memberikan perspektif unik serta mampu
-            menjembatani kebutuhan bisnis dengan solusi teknis yang tepat
-            sasaran, mulai dari desain UI/UX, implementasi, hingga pengujian
-            sistem dan analisis data.
-          </p> */}
+            * Klik salah satu pengalaman untuk melihat dokumentasi terkait
+          </p>
 
-          <div className="mt-8 flex flex-col gap-3">
+          <div className="flex flex-col gap-3">
             {EXPERIENCES.map((exp, i) => (
               <div
                 key={i}
-                className="p-5 rounded-2xl relative overflow-hidden"
+                onClick={() => setSelectedExp(exp)}
+                className="p-5 rounded-2xl relative overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01]"
                 style={{
                   background: t.bgCard,
                   border: `1px solid ${t.border}`,
@@ -239,14 +267,19 @@ export function AboutSection({ t }) {
                 <div className="pl-2">
                   <div className="flex justify-between items-start mb-1">
                     <p
-                      className="text-[14px] font-bold"
+                      className="text-[14px] font-bold flex items-center gap-1.5"
                       style={{ color: t.text }}
                     >
                       {exp.role}
+                      <FileImage
+                        size={13}
+                        style={{ color: t.textMuted }}
+                        className="opacity-60"
+                      />
                     </p>
 
                     <span
-                      className="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-blue-400"
+                      className="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-blue-400 shrink-0 ml-2"
                       style={{
                         background: "rgba(59,130,246,0.1)",
                         border: "1px solid rgba(59,130,246,0.2)",
@@ -272,6 +305,84 @@ export function AboutSection({ t }) {
           </div>
         </div>
       </div>
+
+      {/* ================= MODAL DOKUMENTASI ================= */}
+      <AnimatePresence>
+        {selectedExp && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedExp(null)}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6"
+            style={{ background: "rgba(0,0,0,0.75)" }}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.92, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-2xl rounded-2xl overflow-hidden"
+              style={{
+                background: t.bgSurface,
+                border: `1px solid ${t.border}`,
+              }}
+            >
+              {/* Header */}
+              <div
+                className="flex items-center justify-between px-5 py-4"
+                style={{ borderBottom: `1px solid ${t.border}` }}
+              >
+                <div>
+                  <p className="text-[14px] font-bold" style={{ color: t.text }}>
+                    {selectedExp.role}
+                  </p>
+                  <p className="text-[12px] font-semibold text-blue-500">
+                    {selectedExp.company}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setSelectedExp(null)}
+                  className="p-2 rounded-full transition-colors"
+                  style={{ background: t.bgCard }}
+                >
+                  <X size={16} style={{ color: t.textMuted }} />
+                </button>
+              </div>
+
+              {/* Body */}
+              <div className="p-5 max-h-[70vh] overflow-y-auto">
+                {selectedExp.image ? (
+                  <img
+                    src={selectedExp.image}
+                    alt={`Dokumentasi ${selectedExp.role}`}
+                    className="w-full rounded-xl object-contain"
+                    style={{ border: `1px solid ${t.border}` }}
+                  />
+                ) : (
+                  <div
+                    className="flex flex-col items-center justify-center gap-3 py-16 rounded-xl"
+                    style={{
+                      background: t.bgCard,
+                      border: `1px dashed ${t.border}`,
+                    }}
+                  >
+                    <FileImage size={28} style={{ color: t.textMuted }} />
+                    <p
+                      className="text-[13px]"
+                      style={{ color: t.textMuted }}
+                    >
+                      Belum ada dokumentasi untuk pengalaman ini
+                    </p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
