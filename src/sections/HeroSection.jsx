@@ -81,7 +81,7 @@ export function HeroSection({ t, scrollTo }) {
                 boxShadow: "0 0 24px rgba(59,130,246,0.3)",
               }}
             >
-              Lihat Portfolio →
+              Lihat Projects →
             </button>
             <a
               href="/assets/document/CV_HaryoMJ.pdf"

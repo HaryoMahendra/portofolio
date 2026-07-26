@@ -1,11 +1,25 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, FileImage } from "lucide-react";
+import { X, FileImage, GraduationCap } from "lucide-react";
 import { SKILLS } from "../data/skills";
 import { EXPERIENCES } from "../data/experiences";
 
+// Pendidikan digabung ke timeline yang sama dengan pengalaman kerja
+const EDUCATION = {
+  title: "D4 Sistem Informasi Bisnis",
+  subtitle: "Politeknik Negeri Malang",
+  badge: "GPA 3.60",
+  desc: "Fokus pada analisis sistem informasi bisnis, pengembangan aplikasi, dan manajemen proyek digital.",
+  color: "#8B5CF6",
+};
+
 export function AboutSection({ t }) {
   const [selectedExp, setSelectedExp] = useState(null);
+
+  const timeline = [
+    { kind: "education", ...EDUCATION },
+    ...EXPERIENCES.map((exp) => ({ kind: "experience", ...exp })),
+  ];
 
   return (
     <section
@@ -23,285 +37,198 @@ export function AboutSection({ t }) {
       </div>
 
       <div className="grid md:grid-cols-2 gap-16 items-start">
-        {/* ================= KIRI (AVATAR + SKILLS + PENDIDIKAN) ================= */}
-        <div data-aos="fade-right" className="relative">
-          {/* Background Glow */}
+        {/* ================= KIRI (HEADING + DESKRIPSI + TECH SKILLS) ================= */}
+        {/* Sticky supaya tidak menyisakan ruang kosong saat kolom kanan (timeline) lebih panjang */}
+        <div
+          data-aos="fade-right"
+          className="relative md:sticky md:top-28 self-start"
+        >
+          {/* Background glow — satu, lebih tenang */}
           <div
-            className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-30 pointer-events-none"
+            className="absolute -top-10 -left-10 w-72 h-72 rounded-full blur-3xl opacity-25 pointer-events-none"
             style={{ background: "linear-gradient(135deg,#3B82F6,#8B5CF6)" }}
           />
-          <div
-            className="absolute bottom-0 right-0 w-60 h-60 rounded-full blur-2xl opacity-20 pointer-events-none"
-            style={{ background: "linear-gradient(135deg,#06B6D4,#3B82F6)" }}
-          />
 
-          {/* Grid Pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.05] pointer-events-none"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
-            }}
-          />
-
-          {/* Avatar */}
-          <div className="flex justify-center mb-10 relative z-10">
-            <div
-              className="relative w-52 h-52 p-3 rounded-3xl backdrop-blur-xl"
-              style={{
-                background: "rgba(255,255,255,0.02)",
-                border: `1px solid ${t.border}`,
-              }}
-            >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 rounded-3xl"
-                style={{
-                  background:
-                    "conic-gradient(from 0deg, #3B82F6, #8B5CF6, #06B6D4, #3B82F6)",
-                  padding: 2,
-                }}
-              >
-                <div
-                  className="w-full h-full rounded-3xl"
-                  style={{ background: t.bgSurface }}
-                />
-              </motion.div>
-
-              <div
-                className="absolute inset-[3px] rounded-3xl flex flex-col items-center justify-center gap-2"
-                style={{ background: t.bgSurface }}
-              >
-                <div
-                  className="absolute w-24 h-24 rounded-2xl blur-xl opacity-40"
-                  style={{
-                    background: "linear-gradient(135deg,#3B82F6,#8B5CF6)",
-                  }}
-                />
-
-                <img
-                  src="/assets/profile3.jpeg"
-                  alt="Haryo Mahendra"
-                  className="w-35 h-35 rounded-2xl object-cover object-top shadow-lg relative z-10"
-                  style={{ border: `2px solid ${t.border}` }}
-                />
-
-                <p
-                  className="text-[13px] font-bold mt-1"
-                  style={{ color: t.text }}
-                >
-                  Haryo Mahendra Jati
-                </p>
-                <p
-                  className="text-[11px] tracking-wide"
-                  style={{ color: t.textMuted }}
-                >
-                  IT Support | System Analyst
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Skills */}
-          <div className="flex flex-col gap-4 relative z-10 mb-8">
-            <p
-              className="text-[11px] uppercase tracking-[0.2em] mb-1 font-semibold"
-              style={{ color: t.textMuted }}
-            >
-              Tech Skills
-            </p>
-
-            {SKILLS.map((s, i) => (
-              <div key={i} data-aos="fade-up" data-aos-delay={i * 60}>
-                <div className="flex justify-between items-center mb-1.5">
-                  <span
-                    className="text-[13px] font-medium"
-                    style={{ color: t.textSub }}
-                  >
-                    {s.name}
-                  </span>
-                  <span
-                    className="text-[12px] font-mono tabular-nums"
-                    style={{ color: t.textMuted }}
-                  >
-                    {s.level}%
-                  </span>
-                </div>
-
-                <div
-                  className="h-1.5 rounded-full overflow-hidden"
-                  style={{ background: t.divider }}
-                >
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${s.level}%` }}
-                    viewport={{ once: true }}
-                    transition={{
-                      duration: 1.1,
-                      delay: i * 0.1,
-                      ease: "easeOut",
-                    }}
-                    className="h-full rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg,${s.color},${s.color}99)`,
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Pendidikan - mengisi ruang kosong supaya sejajar dengan Experience */}
           <div className="relative z-10">
-            <p
-              className="text-[11px] uppercase tracking-[0.2em] mb-3 font-semibold"
-              style={{ color: t.textMuted }}
+            <h2
+              className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold leading-tight tracking-tight mb-5"
+              style={{ color: t.text }}
             >
-              Pendidikan
-            </p>
-
-            <div
-              className="p-5 rounded-2xl relative overflow-hidden"
-              style={{
-                background: t.bgCard,
-                border: `1px solid ${t.border}`,
-              }}
-            >
-              <div
-                className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
+              Dari Bangku Kuliah ke{" "}
+              <span
                 style={{
-                  background: "linear-gradient(180deg,#8B5CF6,transparent)",
+                  background: "linear-gradient(90deg,#3B82F6,#8B5CF6)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
                 }}
-              />
+              >
+                Ruang Server.
+              </span>
+            </h2>
 
-              <div className="pl-2">
-                <div className="flex justify-between items-start mb-1">
-                  <p className="text-[14px] font-bold" style={{ color: t.text }}>
-                    D4 Sistem Informasi Bisnis
-                  </p>
-                  <span
-                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-purple-400 shrink-0 ml-2"
-                    style={{
-                      background: "rgba(139,92,246,0.1)",
-                      border: "1px solid rgba(139,92,246,0.2)",
-                    }}
+            {/* Deskripsi — TIDAK DIUBAH */}
+            <p
+              className="text-[15px] leading-loose mb-4"
+              style={{ color: t.textSub }}
+            >
+              Lulusan D4 Sistem Informasi Bisnis Politeknik Negeri Malang yang
+              saat ini bekerja sebagai Staff IT di Rumah Sakit Assalam Cibinong.
+              Memiliki pengalaman magang di PT INKA (Persero) pada bidang analisis
+              sistem, proses bisnis, dan pengujian sistem. Berfokus di bidang IT
+              Support, pengelolaan sistem informasi, troubleshooting hardware dan
+              jaringan, serta pengembangan solusi digital yang berorientasi pada
+              kebutuhan pengguna.
+            </p>
+            <br />
+
+            {/* Tech Skills — TIDAK DIUBAH */}
+            <div className="flex flex-col gap-4">
+              <p
+                className="text-[11px] uppercase tracking-[0.2em] mb-1 font-semibold"
+                style={{ color: t.textMuted }}
+              >
+                Tech Skills
+              </p>
+
+              {SKILLS.map((s, i) => (
+                <div key={i} data-aos="fade-up" data-aos-delay={i * 60}>
+                  <div className="flex justify-between items-center mb-1.5">
+                    <span
+                      className="text-[13px] font-medium"
+                      style={{ color: t.textSub }}
+                    >
+                      {s.name}
+                    </span>
+                    <span
+                      className="text-[12px] font-mono tabular-nums"
+                      style={{ color: t.textMuted }}
+                    >
+                      {s.level}%
+                    </span>
+                  </div>
+
+                  <div
+                    className="h-1.5 rounded-full overflow-hidden"
+                    style={{ background: t.divider }}
                   >
-                    GPA 3.60
-                  </span>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${s.level}%` }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 1.1,
+                        delay: i * 0.1,
+                        ease: "easeOut",
+                      }}
+                      className="h-full rounded-full"
+                      style={{
+                        background: `linear-gradient(90deg,${s.color},${s.color}99)`,
+                      }}
+                    />
+                  </div>
                 </div>
-
-                <p className="text-[12px] font-semibold text-purple-400 mb-1.5">
-                  Politeknik Negeri Malang
-                </p>
-
-                <p
-                  className="text-[13px] leading-relaxed"
-                  style={{ color: t.textMuted }}
-                >
-                  Fokus pada analisis sistem informasi bisnis, pengembangan
-                  aplikasi, dan manajemen proyek digital.
-                </p>
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* ================= KANAN (TEXT + EXPERIENCE) ================= */}
+        {/* ================= KANAN (TIMELINE PENDIDIKAN + PENGALAMAN) ================= */}
         <div data-aos="fade-left">
-          <h2
-            className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold leading-tight tracking-tight mb-5"
-            style={{ color: t.text }}
-          >
-            Mengubah kebutuhan bisnis{" "}
-            <span
+          <div className="relative pl-6">
+            <div
+              className="absolute left-[7px] top-1 bottom-1 w-[1.5px]"
               style={{
-                background: "linear-gradient(90deg,#3B82F6,#8B5CF6)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
+                background: `linear-gradient(180deg, #8B5CF6, ${t.divider} 90%, transparent)`,
               }}
-            >
-              menjadi solusi digital.
-            </span>
-          </h2>
+            />
 
-          <p
-            className="text-[15px] leading-loose mb-4"
-            style={{ color: t.textSub }}
-          >
-            Lulusan D4 Sistem Informasi Bisnis Politeknik Negeri Malang yang
-            saat ini bekerja sebagai Staff IT di Rumah Sakit Assalam Cibinong.
-            Memiliki pengalaman magang di PT INKA (Persero) pada bidang analisis
-            sistem, proses bisnis, dan pengujian sistem. Berfokus di bidang IT
-            Support, pengelolaan sistem informasi, troubleshooting hardware dan
-            jaringan, serta pengembangan solusi digital yang berorientasi pada
-            kebutuhan pengguna.
-          </p>
-
-          <p
-            className="text-[12px] italic mb-6"
-            style={{ color: t.textMuted }}
-          >
-            * Klik salah satu pengalaman untuk melihat dokumentasi terkait
-          </p>
-
-          <div className="flex flex-col gap-3">
-            {EXPERIENCES.map((exp, i) => (
-              <div
-                key={i}
-                onClick={() => setSelectedExp(exp)}
-                className="p-5 rounded-2xl relative overflow-hidden cursor-pointer transition-transform duration-200 hover:-translate-y-0.5 hover:scale-[1.01]"
-                style={{
-                  background: t.bgCard,
-                  border: `1px solid ${t.border}`,
-                }}
-              >
-                <div
-                  className="absolute left-0 top-0 bottom-0 w-[3px] rounded-l-2xl"
-                  style={{
-                    background: `linear-gradient(180deg,${exp.color},transparent)`,
-                  }}
-                />
-
-                <div className="pl-2">
-                  <div className="flex justify-between items-start mb-1">
-                    <p
-                      className="text-[14px] font-bold flex items-center gap-1.5"
-                      style={{ color: t.text }}
-                    >
-                      {exp.role}
-                      <FileImage
-                        size={13}
-                        style={{ color: t.textMuted }}
-                        className="opacity-60"
-                      />
-                    </p>
-
+            <div className="flex flex-col gap-6">
+              {timeline.map((item, i) => {
+                const clickable = item.kind === "experience";
+                return (
+                  <motion.div
+                    key={i}
+                    data-aos="fade-up"
+                    data-aos-delay={i * 70}
+                    className="relative"
+                  >
+                    {/* Node */}
                     <span
-                      className="text-[11px] font-medium px-2.5 py-0.5 rounded-full text-blue-400 shrink-0 ml-2"
+                      className="absolute -left-6 top-1.5 w-3.5 h-3.5 rounded-full flex items-center justify-center"
                       style={{
-                        background: "rgba(59,130,246,0.1)",
-                        border: "1px solid rgba(59,130,246,0.2)",
+                        background: t.bgSurface,
+                        border: `2px solid ${item.color || "#3B82F6"}`,
                       }}
                     >
-                      {exp.period}
+                      <span
+                        className="w-1.5 h-1.5 rounded-full"
+                        style={{ background: item.color || "#3B82F6" }}
+                      />
                     </span>
-                  </div>
 
-                  <p className="text-[12px] font-semibold text-blue-500 mb-1.5">
-                    {exp.company}
-                  </p>
+                    <div
+                      onClick={() => clickable && setSelectedExp(item)}
+                      className={`p-5 rounded-2xl relative overflow-hidden transition-transform duration-200 ${
+                        clickable
+                          ? "cursor-pointer hover:-translate-y-0.5 hover:scale-[1.01]"
+                          : ""
+                      }`}
+                      style={{
+                        background: t.bgCard,
+                        border: `1px solid ${t.border}`,
+                      }}
+                    >
+                      <div className="flex justify-between items-start mb-1 gap-2">
+                        <p
+                          className="text-[14px] font-bold flex items-center gap-1.5"
+                          style={{ color: t.text }}
+                        >
+                          {item.kind === "education" && (
+                            <GraduationCap
+                              size={14}
+                              style={{ color: item.color }}
+                            />
+                          )}
+                          {item.title || item.role}
+                          {clickable && item.image && (
+                            <FileImage
+                              size={13}
+                              style={{ color: t.textMuted }}
+                              className="opacity-60"
+                            />
+                          )}
+                        </p>
 
-                  <p
-                    className="text-[13px] leading-relaxed"
-                    style={{ color: t.textMuted }}
-                  >
-                    {exp.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+                        <span
+                          className="text-[11px] font-medium px-2.5 py-0.5 rounded-full shrink-0"
+                          style={{
+                            color: item.color || "#3B82F6",
+                            background: `${item.color || "#3B82F6"}1A`,
+                            border: `1px solid ${item.color || "#3B82F6"}33`,
+                          }}
+                        >
+                          {item.badge || item.period}
+                        </span>
+                      </div>
+
+                      <p
+                        className="text-[12px] font-semibold mb-1.5"
+                        style={{ color: item.color || "#3B82F6" }}
+                      >
+                        {item.subtitle || item.company}
+                      </p>
+
+                      <p
+                        className="text-[13px] leading-relaxed"
+                        style={{ color: t.textMuted }}
+                      >
+                        {item.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

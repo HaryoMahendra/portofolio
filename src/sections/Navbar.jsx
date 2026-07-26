@@ -4,13 +4,13 @@ import { SiteIcon } from "../components/SiteIcon";
 import { SunIcon } from "../components/SunIcon";
 import { MoonIcon } from "../components/MoonIcon";
 
-const NAV_ITEMS = ["Home", "About", "Projects", "Contact"];
+const NAV_ITEMS = ["Home", "About", "Services", "Projects", "Contact"];
 
 export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const handleNav = (item) => {
-    scrollTo(item.toLowerCase());
+  scrollTo(item.toLowerCase());  // "Services" → scrollTo("services")
     setMenuOpen(false);
   };
 
@@ -27,7 +27,6 @@ export function Navbar({ dark, setDark, t, activeSection, scrollTo }) {
       >
         <div className="mx-auto px-6 md:px-14 py-3.5 flex justify-between items-center max-w-6xl">
 
-          {/* Brand */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}

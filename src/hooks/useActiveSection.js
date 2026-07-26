@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-export function useActiveSection(sections = ["home", "about", "projects", "contact"]) {
+export function useActiveSection(
+  sections = ["home", "about", "services", "projects", "contact"]
+) {
   const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
@@ -11,13 +13,13 @@ export function useActiveSection(sections = ["home", "about", "projects", "conta
         ([entry]) => {
           if (entry.isIntersecting) setActiveSection(id);
         },
-        { threshold: 0.3 }
+        { threshold: 0, rootMargin: "-45% 0px -45% 0px" }
       );
       observer.observe(el);
       return observer;
     });
     return () => observers.forEach((obs) => obs?.disconnect());
-  }, []);
+  }, [sections]);
 
   return activeSection;
 }

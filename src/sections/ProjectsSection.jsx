@@ -23,7 +23,7 @@ export function ProjectsSection({ t }) {
     >
       <div className="flex items-center gap-3 mb-4" data-aos="fade-up">
         <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-blue-400">
-          Portfolio
+          Projects
         </span>
         <div
           className="flex-1 h-[1px] max-w-xs"
@@ -167,7 +167,6 @@ export function ProjectsSection({ t }) {
         </div>
       )}
 
-      {/* MODAL SEMUA PROJECT */}
       {showAllProjects && (
         <div
           className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"

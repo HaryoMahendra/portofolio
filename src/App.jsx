@@ -8,6 +8,7 @@ import { useActiveSection } from "./hooks/useActiveSection";
 import { Navbar } from "./sections/Navbar";
 import { HeroSection } from "./sections/HeroSection";
 import { AboutSection } from "./sections/AboutSection";
+import { ServicesSection } from "./sections/ServicesSection";
 import { ProjectsSection } from "./sections/ProjectsSection";
 import { ContactSection } from "./sections/ContactSection";
 import { Footer } from "./sections/Footer";
@@ -73,6 +74,7 @@ export default function App() {
       <Navbar dark={dark} setDark={setDark} t={t} activeSection={activeSection} scrollTo={scrollTo} />
       <HeroSection t={t} scrollTo={scrollTo} />
       <AboutSection t={t} />
+      <ServicesSection t={t} />
       <ProjectsSection t={t} />
       <ContactSection t={t} dark={dark} />
       <Footer t={t} />

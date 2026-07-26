@@ -39,7 +39,7 @@ export function AllProjectsPage({ t, onSelectProject }) {
       {/* Header */}
       <div className="mb-10">
         <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-400">
-          Portfolio
+          Projects
         </span>
 
         <h2
