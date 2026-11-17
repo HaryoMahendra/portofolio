@@ -19,7 +19,7 @@ const SERVICES = [
     icon: Code2,
     color: "#8B5CF6",
     title: "Pengembangan Aplikasi Internal",
-    desc: "Membangun tools web internal — dari sistem helpdesk hingga scanner inventaris — untuk menyederhanakan proses kerja tim.",
+    desc: "Membangun tools web internal dari sistem helpdesk hingga scanner inventaris untuk menyederhanakan proses kerja tim.",
     tools: ["Laravel", "React", "Tailwind CSS"],
   },
   {
@@ -82,8 +82,8 @@ export function ServicesSection({ t }) {
         className="text-[15px] leading-loose mb-12 max-w-2xl"
         style={{ color: t.textSub }}
       >
-        Setiap hari saya menangani puluhan tiket — mulai dari gangguan
-        perangkat, kebutuhan sistem, sampai jaringan. Berikut kategori
+        Setiap hari saya menangani tiket mulai dari gangguan
+        hardware, kebutuhan software, sampai jaringan. Berikut kategori
         layanan yang paling sering saya tangani.
       </p>
 

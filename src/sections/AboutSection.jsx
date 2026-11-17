@@ -1,25 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, FileImage, GraduationCap } from "lucide-react";
+import { X, FileImage } from "lucide-react";
 import { SKILLS } from "../data/skills";
 import { EXPERIENCES } from "../data/experiences";
-
-// Pendidikan digabung ke timeline yang sama dengan pengalaman kerja
-const EDUCATION = {
-  title: "D4 Sistem Informasi Bisnis",
-  subtitle: "Politeknik Negeri Malang",
-  badge: "GPA 3.60",
-  desc: "Fokus pada analisis sistem informasi bisnis, pengembangan aplikasi, dan manajemen proyek digital.",
-  color: "#8B5CF6",
-};
 
 export function AboutSection({ t }) {
   const [selectedExp, setSelectedExp] = useState(null);
 
-  const timeline = [
-    { kind: "education", ...EDUCATION },
-    ...EXPERIENCES.map((exp) => ({ kind: "experience", ...exp })),
-  ];
+  const timeline = EXPERIENCES.map((exp) => ({ kind: "experience", ...exp }));
 
   return (
     <section
@@ -54,7 +42,7 @@ export function AboutSection({ t }) {
               className="text-[clamp(1.8rem,3.5vw,2.8rem)] font-bold leading-tight tracking-tight mb-5"
               style={{ color: t.text }}
             >
-              Dari Bangku Kuliah ke{" "}
+              Pendidikan dan{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg,#3B82F6,#8B5CF6)",
@@ -62,7 +50,7 @@ export function AboutSection({ t }) {
                   WebkitTextFillColor: "transparent",
                 }}
               >
-                Ruang Server.
+              Pengalaman.
               </span>
             </h2>
 
@@ -81,7 +69,6 @@ export function AboutSection({ t }) {
             </p>
             <br />
 
-            {/* Tech Skills — TIDAK DIUBAH */}
             <div className="flex flex-col gap-4">
               <p
                 className="text-[11px] uppercase tracking-[0.2em] mb-1 font-semibold"
@@ -132,7 +119,7 @@ export function AboutSection({ t }) {
           </div>
         </div>
 
-        {/* ================= KANAN (TIMELINE PENDIDIKAN + PENGALAMAN) ================= */}
+        {/* ================= KANAN (TIMELINE PENGALAMAN) ================= */}
         <div data-aos="fade-left">
           <div className="relative pl-6">
             <div
@@ -183,12 +170,6 @@ export function AboutSection({ t }) {
                           className="text-[14px] font-bold flex items-center gap-1.5"
                           style={{ color: t.text }}
                         >
-                          {item.kind === "education" && (
-                            <GraduationCap
-                              size={14}
-                              style={{ color: item.color }}
-                            />
-                          )}
                           {item.title || item.role}
                           {clickable && item.image && (
                             <FileImage

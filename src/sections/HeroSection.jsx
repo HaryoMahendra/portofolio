@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
+import { ArrowUpRight, Download } from "lucide-react";
 
 export function HeroSection({ t, scrollTo }) {
   return (
@@ -7,34 +8,12 @@ export function HeroSection({ t, scrollTo }) {
       id="home"
       className="relative z-10 min-h-screen flex flex-col justify-center px-6 md:px-14 max-w-6xl mx-auto pt-24"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="inline-flex items-center gap-2 mb-8 w-fit px-4 py-1.5 rounded-full"
-        style={{
-          background: "rgba(59,130,246,0.08)",
-          border: "1px solid rgba(59,130,246,0.2)",
-        }}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-        <span className="text-[12px] font-medium text-blue-400 tracking-wide">
-          Open to Work
-        </span>
-      </motion.div>
-
       <div className="grid md:grid-cols-2 gap-14 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
         >
-          <p
-            className="text-[12px] font-semibold mb-2 tracking-[0.2em] uppercase"
-            style={{ color: t.textMuted }}
-          >
-            Hi, saya
-          </p>
           <h1
             className="text-[clamp(2.4rem,5.5vw,4.6rem)] font-bold leading-[1.05] tracking-[-0.03em] mb-3"
             style={{ color: t.text }}
@@ -81,7 +60,8 @@ export function HeroSection({ t, scrollTo }) {
                 boxShadow: "0 0 24px rgba(59,130,246,0.3)",
               }}
             >
-              Lihat Projects →
+              Lihat Projects
+              <ArrowUpRight size={16} />
             </button>
             <a
               href="/assets/document/CV_HaryoMJ.pdf"
@@ -93,97 +73,90 @@ export function HeroSection({ t, scrollTo }) {
                 background: t.bgCard,
               }}
             >
-              ↓ Download CV
+              Download CV
+              <Download size={15} />
             </a>
-          </div>
-
-          <div className="flex flex-wrap gap-x-8 gap-y-3">
-            {[
-              { icon: "📍", text: "Madiun, Indonesia" },
-              { icon: "🎓", text: "D4 Sistem Informasi Bisnis" },
-              { icon: "💼", text: "1+ Tahun Pengalaman" },
-            ].map(({ icon, text }, i) => (
-              <div key={i} className="flex items-center gap-2">
-                <span className="text-sm">{icon}</span>
-                <span className="text-[13px]" style={{ color: t.textMuted }}>
-                  {text}
-                </span>
-              </div>
-            ))}
           </div>
         </motion.div>
 
-        {/* Avatar card */}
+        {/* Foto — komposisi blob berlapis + orbit ring, foto bebas tanpa bingkai kartu */}
         <motion.div
-          animate={{ y: [0, -14, 0] }}
-          transition={{ repeat: Infinity, duration: 4.5, ease: "easeInOut" }}
-          className="flex justify-center relative"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.7, delay: 0.15 }}
+          className="relative flex justify-center items-center min-h-[420px]"
         >
-          <div
-            className="absolute w-72 h-72 rounded-full"
+          {/* Lapisan blob aurora — 2 warna brand, arah & kecepatan beda supaya terasa hidup */}
+          <motion.div
+            animate={{ rotate: 360, scale: [1, 1.08, 1] }}
+            transition={{
+              rotate: { repeat: Infinity, duration: 22, ease: "linear" },
+              scale: { repeat: Infinity, duration: 7, ease: "easeInOut" },
+            }}
+            className="absolute w-[300px] h-[300px] md:w-[360px] md:h-[360px] rounded-[42%_58%_65%_35%/45%_40%_60%_55%] blur-2xl"
             style={{
-              background:
-                "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%)",
+              background: "linear-gradient(135deg,#3B82F6,#8B5CF6)",
+              opacity: 0.55,
             }}
           />
-          <div
-            className="relative z-10 w-72 h-80 rounded-3xl flex flex-col items-center justify-center gap-4"
-            style={{
-              background: t.bgCard,
-              border: `1px solid ${t.border}`,
-              backdropFilter: "blur(16px)",
-              boxShadow:
-                t.text === "#f0f0ee"
-                  ? "0 8px 40px rgba(0,0,0,0.4)"
-                  : "0 8px 40px rgba(0,0,0,0.08)",
+          <motion.div
+            animate={{ rotate: -360, scale: [1, 1.1, 1] }}
+            transition={{
+              rotate: { repeat: Infinity, duration: 28, ease: "linear" },
+              scale: {
+                repeat: Infinity,
+                duration: 9,
+                ease: "easeInOut",
+                delay: 1,
+              },
             }}
+            className="absolute w-[220px] h-[220px] md:w-[260px] md:h-[260px] rounded-[60%_40%_35%_65%/55%_60%_40%_45%] blur-2xl"
+            style={{
+              background: "linear-gradient(135deg,#06B6D4,#3B82F6)",
+              opacity: 0.4,
+            }}
+          />
+
+          {/* Grid dot halus untuk tekstur, sangat subtle */}
+          <div
+            className="absolute w-[280px] h-[280px] md:w-[320px] md:h-[320px] opacity-[0.07] pointer-events-none"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle, #fff 1px, transparent 1px)",
+              backgroundSize: "18px 18px",
+              borderRadius: "50%",
+              maskImage: "radial-gradient(circle, black 55%, transparent 75%)",
+            }}
+          />
+
+          {/* Orbit ring — cincin putus-putus dengan titik status berjalan */}
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 14, ease: "linear" }}
+            className="absolute w-[260px] h-[260px] md:w-[300px] md:h-[300px] rounded-full"
+            style={{ border: `1.5px dashed ${t.border}` }}
+          >
+            <span
+              className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full"
+              style={{
+                background: "#22C55E",
+                boxShadow: "0 0 10px 2px rgba(34,197,94,0.6)",
+              }}
+            />
+          </motion.div>
+
+          {/* Foto */}
+          <motion.div
+            animate={{ y: [0, -14, 0], rotate: [-1.5, 1.5, -1.5] }}
+            transition={{ repeat: Infinity, duration: 5.5, ease: "easeInOut" }}
+            className="relative z-10"
           >
             <img
-              src="/assets/profile2.jpeg"
+              src="/assets/profilee.png"
               alt="Haryo Mahendra"
-              className="w-40 h-40 rounded-2xl object-cover object-top"
-              style={{ border: `2px solid ${t.border}` }}
+              className="w-[260px] md:w-[300px] h-auto object-contain drop-shadow-2xl"
             />
-            <div className="text-center">
-              <p
-                className="text-[15px] font-bold tracking-tight"
-                style={{ color: t.text }}
-              >
-                Haryo Mahendra Jati
-              </p>
-              <p
-                className="text-[11px] mt-0.5 tracking-wide"
-                style={{ color: t.textMuted }}
-              >
-                IT Support | System Analyst
-              </p>
-            </div>
-            <div
-              className="flex gap-8 pt-3 mt-1 w-full justify-center"
-              style={{ borderTop: `1px solid ${t.divider}` }}
-            >
-              {[{ val: "5+", label: "Projects" }].map(({ val, label }, i) => (
-                <div key={i} className="text-center">
-                  <p
-                    className="text-[18px] font-bold"
-                    style={{
-                      background: "linear-gradient(135deg,#3B82F6,#8B5CF6)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    {val}
-                  </p>
-                  <p
-                    className="text-[10px] uppercase tracking-widest mt-0.5"
-                    style={{ color: t.textMuted }}
-                  >
-                    {label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

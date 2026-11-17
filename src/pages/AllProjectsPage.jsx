@@ -15,59 +15,58 @@ export function AllProjectsPage({ t, onSelectProject }) {
             p.category?.toLowerCase() === activeFilter.toLowerCase()
         );
 
-  // 🎯 Dynamic Title
   const getTitle = () => {
     switch (activeFilter) {
-      case "Design":
-        return "Design Project";
-      case "Web":
-        return "Web Project";
-      case "Testing":
-        return "Testing Project";
+      case "Design": return "Proyek Design";
+      case "Web": return "Proyek Web";
+      case "Testing": return "Proyek Testing";
       default:
-        return "All Project";
+        return "Semua Proyek";
     }
   };
 
   const getSubtitle = () => {
-    return `Menampilkan ${filtered.length} project dalam kategori ${activeFilter}`;
+    return activeFilter === "All"
+      ? `Menampilkan ${filtered.length} proyek`
+      : `Menampilkan ${filtered.length} proyek kategori ${activeFilter}`;
   };
 
   return (
-    <div className="p-6 md:p-10">
-
+    <div className="p-6 sm:p-8 md:p-10">
       {/* Header */}
-      <div className="mb-10">
+      <div className="mb-8 pr-10">
         <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-blue-400">
           Projects
         </span>
 
         <h2
-          className="text-3xl md:text-4xl font-bold mt-2 mb-2 transition-all duration-300"
+          className="mt-2 mb-2 text-3xl md:text-4xl font-bold tracking-tight transition-all duration-300"
           style={{ color: t?.text }}
         >
           {getTitle()}
         </h2>
 
-        <p className="text-sm" style={{ color: t?.textMuted }}>
+        <p className="text-sm" style={{ color: t?.textSub }}>
           {getSubtitle()}
         </p>
       </div>
 
       {/* Filter Buttons */}
-      <div className="flex flex-wrap gap-3 mb-10">
+      <div className="flex flex-wrap gap-2.5 mb-8">
         {filters.map((f) => {
           const isActive = activeFilter === f;
           return (
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`px-4 py-2 rounded-full text-[13px] font-medium transition-all duration-300 border backdrop-blur-md
-              ${
-                isActive
-                  ? "bg-blue-500 text-white border-blue-500 shadow-lg scale-105"
-                  : "border-gray-600 text-gray-400 hover:border-blue-400 hover:text-blue-400 hover:scale-105"
-              }`}
+              aria-pressed={isActive}
+              className="rounded-full border px-4 py-2 text-[13px] font-medium transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                background: isActive ? "#3B82F6" : t?.bgCard,
+                borderColor: isActive ? "#3B82F6" : t?.borderHover,
+                color: isActive ? "#fff" : t?.textSub,
+                boxShadow: isActive ? "0 6px 18px rgba(59,130,246,0.2)" : "none",
+              }}
             >
               {f}
             </button>
@@ -77,19 +76,16 @@ export function AllProjectsPage({ t, onSelectProject }) {
 
       {/* Grid */}
       {filtered.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid auto-rows-fr grid-cols-1 items-stretch gap-5 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
           {filtered.map((p, i) => (
-            <div
+            <ProjectCard
               key={i}
-              className="transition-transform duration-300 hover:scale-[1.03]"
-            >
-              <ProjectCard
-                p={p}
-                i={i}
-                t={t}
-                onClickDetail={() => onSelectProject?.(p)}
-              />
-            </div>
+              p={p}
+              i={i}
+              t={t}
+              compact
+              onClickDetail={() => onSelectProject?.(p)}
+            />
           ))}
         </div>
       ) : (

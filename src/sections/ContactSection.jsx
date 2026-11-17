@@ -37,7 +37,7 @@ export function ContactSection({ t, dark }) {
   </span>
 </h2>
 <p className="text-[15px] leading-relaxed" style={{ color: t.textSub }}>
-  Selalu senang mendengar cerita dan ide baru — baik soal project,
+  Selalu senang mendengar cerita dan ide baru baik project,
   kolaborasi, maupun peluang kerja full-time maupun freelance.
 </p>
       </div>

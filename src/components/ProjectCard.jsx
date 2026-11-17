@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ProjectMockup } from "./mockups/ProjectMockup";
 
-export function ProjectCard({ p, i, t, onClickDetail }) {
+export function ProjectCard({ p, i, t, onClickDetail, compact = false }) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       onClick={onClickDetail}
-      className="group relative rounded-3xl overflow-hidden cursor-pointer"
+      className={`group relative overflow-hidden rounded-3xl cursor-pointer ${compact ? "h-full" : ""}`}
       style={{
         background: t.bgCard,
         border: `1px solid ${hovered ? t.borderHover : t.border}`,
@@ -34,12 +34,12 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
         }}
       />
 
-      <div className="flex flex-col lg:flex-row">
+      <div className={`flex ${compact ? "h-full flex-col" : "flex-col lg:flex-row"}`}>
         {/* Mockup preview */}
         <div
-  className="relative lg:w-[380px] shrink-0 overflow-hidden p-4"
-  style={{ minHeight: 200 }}
->
+          className={`relative shrink-0 overflow-hidden ${compact ? "h-[190px] w-full p-3" : "p-4 lg:w-[380px]"}`}
+          style={{ minHeight: compact ? undefined : 200 }}
+        >
           <div
             className="absolute inset-0 z-10 pointer-events-none"
             style={{
@@ -47,7 +47,7 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
             }}
           />
           <div
-            className="absolute top-4 right-4 z-20 text-[11px] font-mono font-medium px-2.5 py-1 rounded-full"
+            className={`absolute z-20 rounded-full px-2.5 py-1 text-[11px] font-mono font-medium ${compact ? "top-3 right-3" : "top-4 right-4"}`}
             style={{
               background: "rgba(0,0,0,0.4)",
               color: "rgba(255,255,255,0.6)",
@@ -60,16 +60,16 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
           <motion.div
             animate={{ scale: hovered ? 1.03 : 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="w-full h-full"
-            style={{ minHeight: 200 }}
+            className="h-full w-full"
+            style={{ minHeight: compact ? undefined : 200 }}
           >
             {p.image ? (
               <img
-  src={`/assets/proyek/${p.image}`}
-  alt={p.title}
-  className="w-full h-full object-cover rounded-xl"
-  style={{ minHeight: 200 }}
-/>
+                src={`/assets/proyek/${p.image}`}
+                alt={p.title}
+                className="h-full w-full rounded-xl object-cover"
+                style={{ minHeight: compact ? undefined : 200 }}
+              />
             ) : (
               <ProjectMockup type={p.mockupType} accent={p.mockupAccent} />
             )}
@@ -84,17 +84,17 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
         </div>
 
         {/* Content */}
-        <div className="flex-1 p-7 flex flex-col justify-between">
+        <div className={`flex flex-1 flex-col ${compact ? "p-5" : "justify-between p-7"}`}>
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
+            <div className={`mb-3 flex ${compact ? "flex-col items-start gap-2" : "flex-wrap items-center gap-2"}`}>
               <h3
-                className="text-[20px] font-bold tracking-tight"
+                className={`${compact ? "line-clamp-2 min-h-14 text-[18px]" : "text-[20px]"} font-bold tracking-tight`}
                 style={{ color: t.text }}
               >
                 {p.title}
               </h3>
               <span
-                className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full"
+                className={`max-w-full rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${compact ? "truncate" : ""}`}
                 style={{
                   background: `${p.color}18`,
                   color: p.color,
@@ -104,32 +104,45 @@ export function ProjectCard({ p, i, t, onClickDetail }) {
                 {p.tag}
               </span>
             </div>
-            <p className="text-[14px] leading-relaxed mb-5" style={{ color: t.textSub }}>
-  {p.descShort || p.desc}
-</p>
-            <div className="flex flex-wrap gap-2 mb-6">
+            <p
+              className={`${compact ? "mb-4 min-h-[4.5rem] line-clamp-3 text-[13px]" : "mb-5 text-[14px]"} leading-relaxed`}
+              style={{ color: t.textSub }}
+            >
+              {p.descShort || p.desc}
+            </p>
+            <div className={`${compact ? "mb-4" : "mb-6"} flex flex-wrap items-center gap-2`}>
               {p.tech.map((tech, ti) => (
                 <span
                   key={ti}
-                  className="text-[11px] font-medium px-2.5 py-1 rounded-lg"
+                  className={`inline-flex items-center gap-1.5 border font-medium ${
+                    compact
+                      ? "whitespace-nowrap rounded-full px-2.5 py-1 text-[10px]"
+                      : "rounded-lg px-2.5 py-1 text-[11px]"
+                  }`}
                   style={{
-                    background: t.subtle,
+                    background: compact ? `${p.color}12` : t.subtle,
                     color: t.textSub,
-                    border: `1px solid ${t.border}`,
+                    borderColor: compact ? `${p.color}35` : t.border,
                   }}
                 >
+                  {compact && (
+                    <span
+                      className="h-1.5 w-1.5 rounded-full"
+                      style={{ background: p.color }}
+                    />
+                  )}
                   {tech}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="flex items-center justify-between">
+          <div className="mt-auto flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
-  <span className="text-[12px] font-medium" style={{ color: t.textMuted }}>
-    {p.tech.length} framework digunakan
-  </span>
-</div>
+              <span className="text-[12px] font-medium" style={{ color: t.textMuted }}>
+                {p.tech.length} framework digunakan
+              </span>
+            </div>
 
             <motion.div
               onClick={(e) => {

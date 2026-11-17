@@ -69,48 +69,57 @@ export function ProjectsSection({ t }) {
       {/* MODAL DETAIL PROJECT */}
       {selectedProject && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-[9999]"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
           onClick={() => setSelectedProject(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-900 rounded-2xl p-6 w-[90%] max-w-3xl relative scale-95 animate-[fadeIn_.3s_ease,zoomIn_.3s_ease_forwards] overflow-y-auto max-h-[90vh]"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Detail proyek ${selectedProject.title}`}
+            className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-3xl border p-5 sm:p-7 animate-[fadeIn_.3s_ease,zoomIn_.3s_ease_forwards]"
+            style={{
+              background: t.bgSurface,
+              color: t.text,
+              borderColor: t.border,
+              boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+            }}
           >
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white text-lg"
+              aria-label="Tutup detail proyek"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full border transition hover:text-blue-500"
+              style={{
+                background: t.bgSurface,
+                borderColor: t.border,
+                color: t.textSub,
+              }}
             >
               ✕
             </button>
 
-            <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
-
-            {/* <img
-              src={`/assets/proyek/${selectedProject.image}`}
-              className="rounded-xl mb-4 w-full object-cover max-h-[400px]"
-            /> */}
-
             <div className="relative mb-6">
               <img
                 src={`/assets/proyek/${selectedProject.detailImage || selectedProject.image}`}
-                className="w-full h-[260px] md:h-[340px] object-cover rounded-2xl"
+                alt={`${selectedProject.title} project preview`}
+                className="h-[240px] w-full rounded-2xl object-cover sm:h-[280px] md:h-[340px]"
               />
 
               {/* Overlay gradient */}
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
               {/* Title di atas gambar */}
-              <div className="absolute bottom-4 left-5">
+              <div className="absolute bottom-4 left-5 right-5">
                 <h2 className="text-xl md:text-2xl font-bold text-white">
                   {selectedProject.title}
                 </h2>
-                <p className="text-xs text-gray-300 mt-1">
+                <p className="mt-1 text-xs text-white/80">
                   {selectedProject.tag}
                 </p>
               </div>
             </div>
 
-            <p className="text-gray-400 mb-5 leading-relaxed">
+            <p className="mb-5 leading-relaxed" style={{ color: t.textSub }}>
               {selectedProject.desc}
             </p>
 
@@ -118,7 +127,12 @@ export function ProjectsSection({ t }) {
               {selectedProject.tech?.map((tech, i) => (
                 <span
                   key={i}
-                  className="text-xs px-3 py-1 rounded-full bg-gray-800 text-gray-300"
+                  className="rounded-full border px-3 py-1 text-xs"
+                  style={{
+                    background: t.subtle,
+                    borderColor: t.border,
+                    color: t.textSub,
+                  }}
                 >
                   {tech}
                 </span>
@@ -153,12 +167,12 @@ export function ProjectsSection({ t }) {
               <div
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
                 style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: t.subtle,
+                  border: `1px solid ${t.border}`,
                 }}
               >
                 <div className="w-2 h-2 rounded-full bg-gray-500" />
-                <span className="text-[13px] font-medium text-gray-500">
+                <span className="text-[13px] font-medium" style={{ color: t.textMuted }}>
                   Coming Soon
                 </span>
               </div>
@@ -169,27 +183,42 @@ export function ProjectsSection({ t }) {
 
       {showAllProjects && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
           onClick={() => setShowAllProjects(false)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-gray-950 animate-[fadeIn_.3s_ease]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Semua proyek"
+            className="relative w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-2xl border animate-[fadeIn_.3s_ease]"
+            style={{
+              background: t.bgSurface,
+              color: t.text,
+              borderColor: t.border,
+              boxShadow: "0 24px 80px rgba(0,0,0,0.22)",
+            }}
           >
             <button
               onClick={() => setShowAllProjects(false)}
-              className="sticky top-10 float-right mr-4 z-10 text-gray-400 hover:text-white bg-gray-800 hover:bg-gray-700 rounded-full w-8 h-8 flex items-center justify-center transition"
+              aria-label="Tutup daftar proyek"
+              className="sticky top-4 z-10 float-right mr-4 flex h-9 w-9 items-center justify-center rounded-full border transition hover:text-blue-500"
+              style={{
+                background: t.bgSurface,
+                borderColor: t.border,
+                color: t.textSub,
+              }}
             >
               ✕
             </button>
 
-           <AllProjectsPage
-  t={t}
-  onSelectProject={(p) => {
-    setShowAllProjects(false);
-    setTimeout(() => setSelectedProject(p), 50); // ← tambah delay kecil
-  }}
-/>
+            <AllProjectsPage
+              t={t}
+              onSelectProject={(p) => {
+                setShowAllProjects(false);
+                setTimeout(() => setSelectedProject(p), 50);
+              }}
+            />
           </div>
         </div>
       )}
